@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Dream Chaser</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+    .rainbow {
+      font-size: 2.5rem;
+      font-weight: bold;
+      animation: rainbowBlink 1s infinite;
+    }
+    @keyframes rainbowBlink {
+      0% { color: red; }
+      20% { color: orange; }
+      40% { color: yellow; }
+      60% { color: green; }
+      80% { color: blue; }
+      100% { color: violet; }
+    }
+    .typewriter {
+      font-size: 1.5rem;
+      margin-top: 5px;
+      height: 30px;
+    }
+    .clock {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #ccc;
+    }
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-top: 20px;
+      border: 4px solid white;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 15px;
+      backdrop-filter: blur(8px);
+    }
+    .button {
+      background: #4267B2;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    .button:hover {
+      background: #365899;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      margin-top: 20px;
+    }
+    .note {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #ddd;
+    }
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #fff;
+      color: #000;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="rainbow">Masud Rana</h1>
+  <div class="typewriter" id="typewriter"></div>
+  <div class="clock" id="clock"></div>
+
+  <img src="masud.jpg" alt="Masud Rana" class="profile-img" />
+  
+  <div class="card">
+    <h2>About Me</h2>
+    <p>I am Masud Rana, also known as <strong>The Dream Chaser</strong>. I love tech, coding, and creating funny content on YouTube.</p>
+  </div>
+
+  <a href="https://www.facebook.com/profile.php?id=100078423821878" target="_blank" class="button">
+    Visit My Facebook
+  </a>
+
+  <iframe src="https://huggingface.co/spaces/CompVis/stable-diffusion"></iframe>
+  <p class="note">Generate your image above and download it by right-clicking on the result.</p>
+
+  <div id="scrollTopBtn" onclick="scrollToTop()">↑</div>
+
+  <script>
+    // Typewriter effect
+    const text = "The Dream Chaser";
+    let index = 0;
+    function typeWriter() {
+      if (index < text.length) {
+        document.getElementById("typewriter").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 150);
+      }
+    }
+    typeWriter();
+
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString();
+      document.getElementById("clock").innerHTML = timeStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Scroll to top button
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (document.documentElement.scrollTop > 300) {
+        scrollBtn.style.display = "block";
+      } else {
+        scrollBtn.style.display = "none";
+      }
+    };
+    function scrollToTop() {
+      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
