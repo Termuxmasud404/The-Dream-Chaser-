@@ -1,184 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Dream Chaser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Card Generator - The Dream Chaser</title>
   <style>
     body {
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      transition: background 0.3s ease;
+    }
+    .dark-mode {
+      background: #1e1e1e;
+      color: #fff;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding: 1.5rem;
+      border-radius: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .profile-card {
       text-align: center;
-      padding: 20px;
-      scroll-behavior: smooth;
-    }
-    .rainbow {
-      font-size: 2.5rem;
-      font-weight: bold;
-      animation: rainbowBlink 1s infinite;
-    }
-    @keyframes rainbowBlink {
-      0% { color: red; }
-      20% { color: orange; }
-      40% { color: yellow; }
-      60% { color: green; }
-      80% { color: blue; }
-      100% { color: violet; }
-    }
-    .typewriter {
-      font-size: 1.5rem;
-      margin-top: 5px;
-      height: 30px;
-    }
-    .clock {
-      font-size: 18px;
-      margin-top: 10px;
-      color: #ccc;
-    }
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin-top: 20px;
-      border: 4px solid white;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      margin: 20px auto;
-      width: 90%;
-      max-width: 500px;
+      border: 2px solid #ccc;
+      padding: 1rem;
       border-radius: 15px;
-      backdrop-filter: blur(8px);
+      background-color: #f9f9f9;
+      transition: transform 0.3s;
     }
-    .button {
-      background: #4267B2;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 8px;
-      display: inline-block;
+    .profile-card:hover {
+      transform: scale(1.02);
+    }
+    img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+    .input-section input, .input-section textarea {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.6rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    .qr-code {
       margin-top: 10px;
+    }
+    button {
+      padding: 0.6rem 1rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
       transition: background 0.3s;
     }
-    .button:hover {
-      background: #365899;
-    }
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      margin-top: 20px;
-    }
-    .note {
-      font-size: 14px;
-      margin-top: 10px;
-      color: #ddd;
-    }
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #fff;
-      color: #000;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h1 class="rainbow">Masud Rana</h1>
-  <div class="typewriter" id="typewriter"></div>
-  <div class="clock" id="clock"></div>
-
-  <img src="masud.jpg" alt="Masud Rana" class="profile-img" />
-  
-  <div class="card">
-    <h2>About Me</h2>
-    <p>I am Masud Rana, also known as <strong>The Dream Chaser</strong>. I love tech, coding, and creating funny content on YouTube.</p>
-  </div>
-
-  <a href="https://www.facebook.com/profile.php?id=100078423821878" target="_blank" class="button">
-    Visit My Facebook
-  </a>
-
-  <iframe src="https://huggingface.co/spaces/CompVis/stable-diffusion"></iframe>
-  <p class="note">Generate your image above and download it by right-clicking on the result.</p>
-
-  <div id="weather" style="font-size: 18px; margin-top: 20px;"></div>
-
-  <div id="scrollTopBtn" onclick="scrollToTop()">↑</div>
-
-  <script>
-    // Typewriter effect
-    const text = "The Dream Chaser";
-    let index = 0;
-    function typeWriter() {
-      if (index < text.length) {
-        document.getElementById("typewriter").innerHTML += text.charAt(index);
-        index++;
-        setTimeout(typeWriter, 150);
-      }
-    }
-    typeWriter();
-
-    // Live Clock
-    function updateClock() {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString();
-      document.getElementById("clock").innerHTML = timeStr;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Scroll to top button
-    const scrollBtn = document.getElementById("scrollTopBtn");
-    window.onscroll = function () {
-      if (document.documentElement.scrollTop > 300) {
-        scrollBtn.style.display = "block";
-      } else {
-        scrollBtn.style.display = "none";
-      }
-    };
-    function scrollToTop() {
-      document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+  <div class="container">
+    <h2>Create Your Profile Card</h2>
+    <div class="input-section">
+      <input type="text" id="name" placeholder="Your Name" />
+      <input type="text" id="age" placeholder="Age" />
+      <input type="text" id="profession" placeholder="Profession" />
+      <input type="text" id="location" placeholder="Location" />
+      <input type="text" id="hobbies" placeholder="Hobbies" />
+      <input type="text" id="imageUrl" placeholder="Profile Image URL" />
+      <input type="text" id="tagline" placeholder="Tagline (or click Generate)" />
+      <button onclick="generateTagline()">Generate Funny Tagline</button>
+      <input type="text" id="socialLink" placeholder="Facebook/YouTube Link" />
+      <button onclick="generateCard()">Generate Card</button>
+      <button onclick="toggleDarkMode()">Toggle Dark/Light</button>
+    </div>
+    <div id="cardPreview" class="profile-card" style="display: none">
+      <img id="previewImage" src="" alt="Profile" />
+      <h3 id="previewName"></h3>
+      <p id="previewAge"></p>
+      <p id="previewProfession"></p>
+      <p id="previewLocation"></p>
+      <p id="previewHobbies"></p>
+      <strong id="previewTagline"></strong>
+      <div class="qr-code">
+        <img id="qrCode" src="" width="100" />
+      </div>
+    </div>
+  </div>  <script>
+    function generateCard() {
+      document.getElementById("cardPreview").style.display = "block";
+      document.getElementById("previewImage").src = document.getElementById("imageUrl").value;
+      document.getElementById("previewName").innerText = document.getElementById("name").value;
+      document.getElementById("previewAge").innerText = "Age: " + document.getElementById("age").value;
+      document.getElementById("previewProfession").innerText = "Profession: " + document.getElementById("profession").value;
+      document.getElementById("previewLocation").innerText = "Location: " + document.getElementById("location").value;
+      document.getElementById("previewHobbies").innerText = "Hobbies: " + document.getElementById("hobbies").value;
+      document.getElementById("previewTagline").innerText = document.getElementById("tagline").value;
+      const social = document.getElementById("socialLink").value;
+      document.getElementById("qrCode").src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(social)}`;
     }
 
-    // Weather Widget (with OpenWeatherMap API)
-    const apiKey = 'YOUR_API_KEY';  // Use your OpenWeatherMap API Key here
-    const city = 'Lalmonirhat'; // City name
-    const units = 'metric'; // Celsius
-
-    function getWeather() {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const temp = data.main.temp;
-          const weatherDescription = data.weather[0].description;
-          const humidity = data.main.humidity;
-          const windSpeed = data.wind.speed;
-
-          document.getElementById('weather').innerHTML = `
-            <h3>Weather in ${city}</h3>
-            <p>Temperature: ${temp}°C</p>
-            <p>Condition: ${weatherDescription}</p>
-            <p>Humidity: ${humidity}%</p>
-            <p>Wind Speed: ${windSpeed} m/s</p>
-          `;
-        })
-        .catch(error => {
-          console.error('Error fetching weather data:', error);
-          document.getElementById('weather').innerHTML = '<p>Sorry, unable to fetch weather data.</p>';
-        });
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
     }
 
-    // Call the function to get weather data
-    getWeather();
-  </script>
-</body>
+    function generateTagline() {
+      const taglines = [
+        "The Dream Chaser",
+        "Living in 404 Error Mode",
+        "Part-time human, full-time coder",
+        "Laugh, Code, Repeat",
+        "Too cool for bugs!"
+      ];
+      const random = taglines[Math.floor(Math.random() * taglines.length)];
+      document.getElementById("tagline").value = random;
+    }
+  </script></body>
 </html>
